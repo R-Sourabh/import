@@ -23,7 +23,7 @@
           </ion-item>
           <ion-item :disabled="currentJob?.statusId === 'SERVICE_FINISHED'" lines="none">
             <ion-button v-show="!isJobNameUpdating" color="medium" size="small" fill="outline" @click="editJobName">{{ translate("Rename") }}</ion-button>
-            <ion-button v-show="isJobNameUpdating" color="medium" size="small" fill="outline" @click="updateJobName">{{ translate("Save") }}</ion-button>
+            <ion-button v-show="isJobNameUpdating" color="medium" size="small" fill="outline" @mousedown.prevent @click="updateJobName">{{ translate("Save") }}</ion-button>
             <ion-button color="medium" size="small" fill="outline" @click="cancelInventory">{{ translate("Cancel") }}</ion-button>
           </ion-item>
         </div>
@@ -204,7 +204,7 @@ export default defineComponent({
         'jobId': job.jobId,
         'systemJobEnumId': job.systemJobEnumId,
         'recurrenceTimeZone': this.userProfile.userTimeZone,
-        'tempExprId': job.jobStatus,
+        'tempExprId': job.tempExprId,
         'statusId': "SERVICE_PENDING",
         'runTimeEpoch': '',  // when updating a job clearning the epoch time, as job honors epoch time as runTime and the new job created also uses epoch time as runTime
         'lastModifiedByUserLogin': this.userProfile.userLoginId
